@@ -121,7 +121,8 @@ public class KafkaJobBuilderTest {
         assertEquals(1024, KafkaInputFormat.getKafkaFetchSizeBytes(job.getConfiguration()));
         assertEquals(TextOutputFormat.class, job.getOutputFormatClass());
         assertEquals(KafkaInputFormat.class, job.getInputFormatClass());
-        assertEquals("file:/a/hdfs/path", TextOutputFormat.getOutputPath(job).toString());
+        // assertEquals("file:/a/hdfs/path", TextOutputFormat.getOutputPath(job).toString());
+        assertEquals("/a/hdfs/path", TextOutputFormat.getOutputPath(job).toString()); //apparently hadoop 2.0.0-mr1-cdh4.4.0 omits the file: prefix?
 
         builder.setJobName(null);
         builder.setSequenceFileOutputFormat();
